@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Auth::routes();
+
+Route::get('/positions', 'Company\PositionController@getPosition')->name('position.get');
+
+Route::post('/employee', 'Company\EmployeeController@store')->name('employee.store');
+

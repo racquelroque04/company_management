@@ -10,4 +10,9 @@ class Position extends Model
         'name',
         'company_id'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company', 'company_id');
+    }
 }
