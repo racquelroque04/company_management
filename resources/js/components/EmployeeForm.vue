@@ -23,7 +23,7 @@
 </template>
 <script>
   export default {
-    data : function() {
+    data () {
       return {
         fields : [
           {'name' : 'employee_name', 'label' : "Employee Name"},
@@ -36,7 +36,7 @@
       }
     },
 
-    created() {
+    created () {
       axios
         .get('https://next-proj.test/api/positions?company_id=1')
         .then(response =>
@@ -44,7 +44,7 @@
         )
     },
 
-    mounted() {
+    mounted () {
       console.log('Component mounted.')
     },
 

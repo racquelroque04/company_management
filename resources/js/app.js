@@ -33,6 +33,8 @@ Vue.component('clocked-in', require('./components/ClockedIn.vue').default);
 Vue.component('clocked-status', require('./components/ClockedOut.vue').default);
 Vue.component('bundy-button', require('./components/BundyButton.vue').default);
 Vue.component('in-out', require('./components/InOutModal.vue').default);
+Vue.component('duration-timer', require('./components/DurationTimer.vue').default);
+Vue.component('attendances', require('./components/Attendances.vue').default);
 
 //Employee
 

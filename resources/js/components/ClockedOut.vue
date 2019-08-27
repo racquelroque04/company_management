@@ -8,13 +8,13 @@
 </template>
 <script>
   export default {
-    data : function () {
+    data () {
       return {
         status : null
       }
     },
 
-    mounted() {
+    mounted () {
       this.status = 'OUT'
       this.$root.$on('clockedStatus', (status) => {
         this.status = status

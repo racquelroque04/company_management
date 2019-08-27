@@ -25,7 +25,7 @@
 </template>
 <script>
   export default  {
-    data : function () {
+    data () {
       return {
         attendance : {},
         fields : {
@@ -35,7 +35,7 @@
         status : null,
       }
     },
-    mounted() {
+    mounted () {
       axios
         .get('/api/attendance/1?company_id=1')
         .then(response => {
@@ -43,6 +43,7 @@
           this.fields.type = this.attendance.data.type === "IN" ? "OUT" : "IN"
           this.$root.$emit('clockedType', this.fields.type)
           this.$root.$emit('clockedStatus', this.attendance.data.type)
+          this.$root.$emit('isClockedIn', this.attendance.data.type, this.attendance.data.created_at)
         }
         )
     },

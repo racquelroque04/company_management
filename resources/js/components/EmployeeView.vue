@@ -44,7 +44,7 @@
 </template>
 <script>
   export default {
-    data : function() {
+    data () {
       return {
         users : [],
         viewEmployee : false,
@@ -53,7 +53,7 @@
       }
     },
 
-    created() {
+    created () {
       axios
         .get('https://next-proj.test/api/employees?company_id=1', this.formFields)
         .then(response =>
@@ -61,7 +61,7 @@
         )
     },
 
-    mounted() {
+    mounted () {
       console.log('Component mounted.')
     },
 

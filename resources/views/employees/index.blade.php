@@ -27,17 +27,13 @@
           </div>
           <div class="card-body p-lg-4">
             <clocked-status class="text-center"></clocked-status>
-            <div class="row text-center">
-              <div class="h5 p-3">
+            <div class="text-center">
+              <div class="h5 p-3 font-weight-bold">
                 Time Rendered for Today
               </div>
             </div>
-            <div class="row text-center">
-              <div class="h5 p-3">
-                --:--
-              </div>
-            </div>
-            <div class="row text-center">
+            <duration-timer></duration-timer>
+            <div class="text-center">
               <bundy-button></bundy-button>
             </div>
           </div>
@@ -47,7 +43,10 @@
         <div class="card">
           <div class="card-body p-lg-5">
               <div class="row">
-                <div class="col-8">
+                <div class="col-2 text-right">
+                  <img class="w-100" src="https://png.pngtree.com/svg/20170602/b7c3ca6e9e.png" alt="">
+                </div>
+                <div class="col-10">
                   <div class="text-lg-left">
                     <div class="h4">
                       {{ auth()->user()->name }}
@@ -60,37 +59,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-4">
-                  profile
-                </div>
               </div>
           </div>
         </div>
         <div class="card mt-3">
           <div class="card-header h-50">
-            <div class="h5 text-left">
-              Attendance
+            <div class="h5 text-left font-weight-bold">
+              My Attendances for this week
             </div>
           </div>
           <div class="card-body p-lg-4">
-            <div class="row">
-              <div class="col-8">
-                <div class="text-lg-left">
-                  <div class="h4">
-                    {{ auth()->user()->name }}
-                  </div>
-                  <div class="h6">
-                    {{ auth()->user()->name }}
-                  </div>
-                  <div class="h6">
-                    {{ auth()->user()->employee->position->name }}
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                profile
-              </div>
-            </div>
+            <attendances></attendances>
           </div>
         </div>
       </div>

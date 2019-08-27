@@ -75,7 +75,7 @@
   import Form from './EmployeeForm';
 
   export default {
-    data : function() {
+    data () {
       return {
         fields : [],
         selectedCreate : null,

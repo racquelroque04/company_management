@@ -29,3 +29,5 @@ Route::post('/attendance/{id}', 'AttendanceController@updateAttendance')->name('
 
 Route::get('/attendance/{id}', 'AttendanceController@myAttendance')->name('attendance.in');
 
+Route::get('/my-attendances/{id}', 'AttendanceController@myAttendances')->name('attendance.in');
+

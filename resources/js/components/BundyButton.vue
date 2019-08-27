@@ -6,13 +6,13 @@
 
 <script>
   export default {
-    data : function () {
+    data () {
       return {
         type : null
       }
     },
 
-    mounted() {
+    mounted () {
       this.type = 'IN'
       this.$root.$on('clockedType', (type) => {
         this.type = type

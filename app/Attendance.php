@@ -13,4 +13,9 @@ class Attendance extends Model
         'duration',
         'remarks',
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo('App\Employee', 'employee_id');
+    }
 }

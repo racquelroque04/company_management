@@ -26,6 +26,7 @@ class EmployeeController extends Controller
 
     public function index()
     {
+//        return auth()->user()->employee->attendance;
         return view('employees.index');
     }
 

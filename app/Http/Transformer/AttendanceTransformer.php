@@ -21,6 +21,8 @@ class AttendanceTransformer extends TransformerAbstract
             'employee_id'   => (int) $attendance->employee_id,
             'company_id'    => (int) $attendance->company_id,
             'type'          => $attendance->type,
+            'duration'      => $attendance->duration,
+            'created_at'    => $attendance->created_at,
         ];
     }
 }
