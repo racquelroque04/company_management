@@ -22,6 +22,9 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 Vue.component('employee-create', require('./components/EmployeeForm.vue').default);
+Vue.component('employee-view', require('./components/EmployeeView.vue').default);
+Vue.component('department-create', require('./components/DepartmentForm.vue').default);
+Vue.component('alert', require('./components/Alert.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -15,7 +15,13 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-Route::get('/positions', 'Company\PositionController@getPosition')->name('position.get');
+Route::get('/positions', 'Company\PositionController@all')->name('position.get');
+
+Route::get('/employees', 'Company\EmployeeController@all')->name('employee.all');
 
 Route::post('/employee', 'Company\EmployeeController@store')->name('employee.store');
+
+Route::get('/employee/{id}', 'Company\EmployeeController@get')->name('employee.get');
+
+Route::post('/employee/{id}', 'Company\EmployeeController@update')->name('employee.update');
 

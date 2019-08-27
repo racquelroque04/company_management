@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Company;
 use App\Position;
+use App\Role;
+use App\RoleUser;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -81,6 +83,7 @@ class RegisterController extends Controller
             'company_id'=> $company->id
         ]);
 
+        $user->roles()->attach($user);
 
         return $user;
     }

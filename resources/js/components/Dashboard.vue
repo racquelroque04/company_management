@@ -16,8 +16,8 @@
 
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <ul class="list-group">
-                  <li class="list-group-item" @click="view('employee')">View</li>
-                  <li class="list-group-item" @click="create('employee')">Create New</li>
+                  <li class="list-group-item" @click="viewList('employee')">View</li>
+                  <li class="list-group-item" @click="createNew('employee')">Create New</li>
                 </ul>
               </div>
             </div>
@@ -31,8 +31,8 @@
               </div>
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <ul class="list-group">
-                  <li class="list-group-item" @click="view('department')">View</li>
-                  <li class="list-group-item" @click="create('department')">Create New</li>
+                  <li class="list-group-item" @click="viewList('department')">View</li>
+                  <li class="list-group-item" @click="createNew('department')">Create New</li>
                 </ul>
               </div>
             </div>
@@ -46,9 +46,18 @@
               </div>
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <ul class="list-group">
-                  <li class="list-group-item" @click="view('position')">View</li>
-                  <li class="list-group-item" @click="create('position')">Create New</li>
+                  <li class="list-group-item" @click="viewList('position')">View</li>
+                  <li class="list-group-item" @click="createNew('position')">Create New</li>
                 </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header p-1" id="headingFour">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed w-100 text-left text-decoration-none" aria-expanded="false">
+                    Attendance
+                  </button>
+                </h5>
               </div>
             </div>
           </div>
@@ -56,10 +65,8 @@
       </div>
     </div>
     <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">Create your Company</div>
-        <employee-create v-if="tabSelected == 'employee'"></employee-create>
-      </div>
+      <employee-create v-show="selectedCreate == 'employee'"></employee-create>
+      <employee-view v-show="selectedView == 'employee'"></employee-view>
     </div>
   </div>
 </template>
@@ -72,7 +79,8 @@
     data : function() {
       return {
         fields : [],
-        tabSelected : null
+        selectedCreate : null,
+        selectedView : null,
       }
     },
 
@@ -81,13 +89,15 @@
     },
 
     methods : {
-      view(item) {
-        alert("test " + item)
+      viewList(item) {
+        this.selectedView = item
+        this.selectedCreate = null
       },
 
-      create(item) {
-        this.tabSelected = item
+      createNew(item) {
+        this.selectedCreate = item
+        this.selectedView = null
       }
-    }
+    },
   }
 </script>

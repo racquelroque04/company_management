@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Company', 'user_id');
     }
+
+    public function employee()
+    {
+        return $this->hasOne('App\Employee', 'user_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id')->withTimestamps();
+    }
 }

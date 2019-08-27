@@ -44,7 +44,7 @@ class PositionController extends Controller
         return redirect('home');
     }
 
-    public function getPosition(Request $request)
+    public function all(Request $request)
     {
         $companyId = $request->get('company_id');
 
