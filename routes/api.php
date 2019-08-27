@@ -27,7 +27,7 @@ Route::post('/employee/{id}', 'Employees\EmployeeController@update')->name('empl
 
 Route::post('/attendance/{id}', 'AttendanceController@updateAttendance')->name('attendance.in');
 
-Route::get('/attendance/{id}', 'AttendanceController@myAttendance')->name('attendance.in');
+Route::get('/attendance/{id}', 'AttendanceController@myAttendance')->name('my_attendance');
 
-Route::get('/my-attendances/{id}', 'AttendanceController@myAttendances')->name('attendance.in');
+Route::get('/my-attendances/{id}', 'AttendanceController@myAttendances')->name('my_attendances');
 

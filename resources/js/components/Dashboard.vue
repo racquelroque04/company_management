@@ -65,8 +65,22 @@
       </div>
     </div>
     <div class="col-md-8">
-      <employee-create v-show="selectedCreate == 'employee'"></employee-create>
-      <employee-view v-show="selectedView == 'employee'"></employee-view>
+      <div class="card vh-58" v-show="defaultView">
+        <div class="card-body p-lg-5">
+          <div class="row">
+            <div class="col-2 text-right">
+              <img class="w-100" src="https://png.pngtree.com/svg/20170602/b7c3ca6e9e.png" alt="">
+            </div>
+            <div class="col-10">
+              <div class="text-lg-left">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <employee-create v-show="selectedCreate === 'employee'"></employee-create>
+      <employee-view v-show="selectedView === 'employee'"></employee-view>
     </div>
   </div>
 </template>
@@ -80,6 +94,7 @@
         fields : [],
         selectedCreate : null,
         selectedView : null,
+        defaultView : true
       }
     },
 
@@ -91,11 +106,13 @@
       viewList(item) {
         this.selectedView = item
         this.selectedCreate = null
+        this.defaultView = false
       },
 
       createNew(item) {
         this.selectedCreate = item
         this.selectedView = null
+        this.defaultView = false
       }
     },
   }

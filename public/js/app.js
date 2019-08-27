@@ -1892,13 +1892,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       fields: [],
       selectedCreate: null,
-      selectedView: null
+      selectedView: null,
+      defaultView: true
     };
   },
   components: {
@@ -1908,10 +1923,12 @@ __webpack_require__.r(__webpack_exports__);
     viewList: function viewList(item) {
       this.selectedView = item;
       this.selectedCreate = null;
+      this.defaultView = false;
     },
     createNew: function createNew(item) {
       this.selectedCreate = item;
       this.selectedView = null;
+      this.defaultView = false;
     }
   }
 });
@@ -55647,13 +55664,29 @@ var render = function() {
       "div",
       { staticClass: "col-md-8" },
       [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.defaultView,
+                expression: "defaultView"
+              }
+            ],
+            staticClass: "card vh-58"
+          },
+          [_vm._m(4)]
+        ),
+        _vm._v(" "),
         _c("employee-create", {
           directives: [
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.selectedCreate == "employee",
-              expression: "selectedCreate == 'employee'"
+              value: _vm.selectedCreate === "employee",
+              expression: "selectedCreate === 'employee'"
             }
           ]
         }),
@@ -55663,8 +55696,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.selectedView == "employee",
-              expression: "selectedView == 'employee'"
+              value: _vm.selectedView === "employee",
+              expression: "selectedView === 'employee'"
             }
           ]
         })
@@ -55774,6 +55807,28 @@ var staticRenderFns = [
           ])
         ]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body p-lg-5" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-2 text-right" }, [
+          _c("img", {
+            staticClass: "w-100",
+            attrs: {
+              src: "https://png.pngtree.com/svg/20170602/b7c3ca6e9e.png",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-10" }, [
+          _c("div", { staticClass: "text-lg-left" })
+        ])
+      ])
     ])
   }
 ]

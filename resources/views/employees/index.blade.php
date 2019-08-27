@@ -48,11 +48,12 @@
                 </div>
                 <div class="col-10">
                   <div class="text-lg-left">
+                    <input type="hidden" id="user_id" value="{{ auth()->user()->id }}">
                     <div class="h4">
                       {{ auth()->user()->name }}
                     </div>
                     <div class="h6">
-                      {{ auth()->user()->name }}
+                      {{ auth()->user()->email }}
                     </div>
                     <div class="h6">
                       {{ auth()->user()->employee->position->name }}
