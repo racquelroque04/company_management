@@ -2163,7 +2163,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -56196,7 +56195,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _vm._v(
-              "\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ea eum, id iure labore nisi obcaecati porro\n        repellendus soluta velit! Ducimus eius minima obcaecati pariatur rem similique? Perferendis, quae reiciendis?\n      "
+              "\n        Sorry! Camera is still under development.\n      "
             )
           ]),
           _vm._v(" "),

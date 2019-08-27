@@ -9,8 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ea eum, id iure labore nisi obcaecati porro
-          repellendus soluta velit! Ducimus eius minima obcaecati pariatur rem similique? Perferendis, quae reiciendis?
+          Sorry! Camera is still under development.
         </div>
         <form @submit.prevent="submit">
           <input type="hidden" name="clocked-type" v-model="fields.type">
