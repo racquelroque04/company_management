@@ -13,8 +13,11 @@
           repellendus soluta velit! Ducimus eius minima obcaecati pariatur rem similique? Perferendis, quae reiciendis?
         </div>
         <form @submit.prevent="submit">
+          <input type="hidden" name="clocked-type" v-model="fields.type">
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Clock In</button>
+            <button type="submit" v-bind:class="{'btn-primary' : fields.type == 'IN', 'btn-danger' : fields.type == 'OUT',}" class="btn btn-lg btn-block">
+              CLOCK {{ fields.type }}
+            </button>
           </div>
         </form>
       </div>
@@ -25,24 +28,36 @@
   export default  {
     data : function () {
       return {
+        attendance : {},
+        fields : {
+          type : ""
+        },
         data : {},
-        status : "null"
+        status : null,
       }
+    },
+    mounted() {
+      axios
+        .get('/api/attendance/1?company_id=1')
+        .then(response => {
+          this.attendance = response.data
+          this.fields.type = this.attendance.data.type === "IN" ? "OUT" : "IN"
+          this.$root.$emit('clockedType', this.fields.type)
+          this.$root.$emit('clockedStatus', this.attendance.data.type)
+        }
+        )
     },
 
     methods : {
       submit() {
-        alert("TEST")
-        axios.post('/api/attendance/1/in?company_id=1')
+        axios.post('/api/attendance/1?company_id=1', this.fields)
           .then(response => {
             this.data = response.data
-            this.status = data.status
-            alert(this.status)
-          }).catch(error => {
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors || {};
-          }
-        });
+            this.status = this.data.data.type
+            this.fields.type = this.status === "IN" ? "OUT" : "IN"
+            this.$root.$emit('clockedStatus', this.status)
+            this.$root.$emit('clockedType', this.fields.type)
+          });
       },
     }
   }

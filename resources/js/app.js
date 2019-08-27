@@ -30,7 +30,8 @@ Vue.component('department-create', require('./components/DepartmentForm.vue').de
 Vue.component('alert', require('./components/Alert.vue').default);
 Vue.component('clock', require('./components/Clock.vue').default);
 Vue.component('clocked-in', require('./components/ClockedIn.vue').default);
-Vue.component('clocked-out', require('./components/ClockedOut.vue').default);
+Vue.component('clocked-status', require('./components/ClockedOut.vue').default);
+Vue.component('bundy-button', require('./components/BundyButton.vue').default);
 Vue.component('in-out', require('./components/InOutModal.vue').default);
 
 //Employee

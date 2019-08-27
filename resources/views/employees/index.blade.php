@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="card-body p-lg-4">
-            <clocked-out class="text-center"></clocked-out>
+            <clocked-status class="text-center"></clocked-status>
             <div class="row text-center">
               <div class="h5 p-3">
                 Time Rendered for Today
@@ -38,7 +38,7 @@
               </div>
             </div>
             <div class="row text-center">
-              <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Clock In</button>
+              <bundy-button></bundy-button>
             </div>
           </div>
         </div>

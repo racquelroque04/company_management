@@ -1688,6 +1688,74 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BundyButton.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BundyButton.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      type: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.type = 'IN';
+    this.$root.$on('clockedType', function (type) {
+      _this.type = type;
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ClockedOut.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ClockedOut.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      status: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.status = 'OUT';
+    this.$root.$on('clockedStatus', function (status) {
+      _this.status = status;
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -2093,26 +2161,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      attendance: {},
+      fields: {
+        type: ""
+      },
       data: {},
-      status: "null"
+      status: null
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/attendance/1?company_id=1').then(function (response) {
+      _this.attendance = response.data;
+      _this.fields.type = _this.attendance.data.type === "IN" ? "OUT" : "IN";
+
+      _this.$root.$emit('clockedType', _this.fields.type);
+
+      _this.$root.$emit('clockedStatus', _this.attendance.data.type);
+    });
   },
   methods: {
     submit: function submit() {
-      var _this = this;
+      var _this2 = this;
 
-      alert("TEST");
-      axios.post('/api/attendance/1/in?company_id=1').then(function (response) {
-        _this.data = response.data;
-        _this.status = data.status;
-        alert(_this.status);
-      })["catch"](function (error) {
-        if (error.response.status === 422) {
-          _this.errors = error.response.data.errors || {};
-        }
+      axios.post('/api/attendance/1?company_id=1', this.fields).then(function (response) {
+        _this2.data = response.data;
+        _this2.status = _this2.data.data.type;
+        _this2.fields.type = _this2.status === "IN" ? "OUT" : "IN";
+
+        _this2.$root.$emit('clockedStatus', _this2.status);
+
+        _this2.$root.$emit('clockedType', _this2.fields.type);
       });
     }
   }
@@ -55053,6 +55139,45 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BundyButton.vue?vue&type=template&id=161c6cf2&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BundyButton.vue?vue&type=template&id=161c6cf2& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn btn-lg btn-block",
+      class: {
+        "btn-primary": _vm.type == "IN",
+        "btn-danger": _vm.type == "OUT"
+      },
+      attrs: {
+        type: "button",
+        "data-toggle": "modal",
+        "data-target": ".bd-example-modal-lg"
+      }
+    },
+    [_vm._v("\n  CLOCK " + _vm._s(_vm.type) + "\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Clock.vue?vue&type=template&id=cac8c49a&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Clock.vue?vue&type=template&id=cac8c49a& ***!
@@ -55128,11 +55253,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-    [_vm._v("\n  You are currently clocked out\n")]
-  )
+  return _vm.status === "OUT"
+    ? _c(
+        "div",
+        { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+        [_vm._v("\n  You are currently clocked out\n")]
+      )
+    : _vm.status === "IN"
+    ? _c(
+        "div",
+        { staticClass: "alert alert-success", attrs: { role: "alert" } },
+        [_vm._v("\n  You are currently clocked in\n")]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56077,7 +56210,49 @@ var render = function() {
                 }
               }
             },
-            [_vm._m(1)]
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.fields.type,
+                    expression: "fields.type"
+                  }
+                ],
+                attrs: { type: "hidden", name: "clocked-type" },
+                domProps: { value: _vm.fields.type },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.fields, "type", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-lg btn-block",
+                    class: {
+                      "btn-primary": _vm.fields.type == "IN",
+                      "btn-danger": _vm.fields.type == "OUT"
+                    },
+                    attrs: { type: "submit" }
+                  },
+                  [
+                    _vm._v(
+                      "\n            CLOCK " +
+                        _vm._s(_vm.fields.type) +
+                        "\n          "
+                    )
+                  ]
+                )
+              ])
+            ]
           )
         ])
       ])
@@ -56107,21 +56282,6 @@ var staticRenderFns = [
           }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-lg btn-block",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("Clock In")]
       )
     ])
   }
@@ -68306,7 +68466,8 @@ Vue.component('department-create', __webpack_require__(/*! ./components/Departme
 Vue.component('alert', __webpack_require__(/*! ./components/Alert.vue */ "./resources/js/components/Alert.vue")["default"]);
 Vue.component('clock', __webpack_require__(/*! ./components/Clock.vue */ "./resources/js/components/Clock.vue")["default"]);
 Vue.component('clocked-in', __webpack_require__(/*! ./components/ClockedIn.vue */ "./resources/js/components/ClockedIn.vue")["default"]);
-Vue.component('clocked-out', __webpack_require__(/*! ./components/ClockedOut.vue */ "./resources/js/components/ClockedOut.vue")["default"]);
+Vue.component('clocked-status', __webpack_require__(/*! ./components/ClockedOut.vue */ "./resources/js/components/ClockedOut.vue")["default"]);
+Vue.component('bundy-button', __webpack_require__(/*! ./components/BundyButton.vue */ "./resources/js/components/BundyButton.vue")["default"]);
 Vue.component('in-out', __webpack_require__(/*! ./components/InOutModal.vue */ "./resources/js/components/InOutModal.vue")["default"]); //Employee
 
 /**
@@ -68432,6 +68593,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/BundyButton.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/BundyButton.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BundyButton_vue_vue_type_template_id_161c6cf2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BundyButton.vue?vue&type=template&id=161c6cf2& */ "./resources/js/components/BundyButton.vue?vue&type=template&id=161c6cf2&");
+/* harmony import */ var _BundyButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BundyButton.vue?vue&type=script&lang=js& */ "./resources/js/components/BundyButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BundyButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BundyButton_vue_vue_type_template_id_161c6cf2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BundyButton_vue_vue_type_template_id_161c6cf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BundyButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/BundyButton.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/BundyButton.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BundyButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./BundyButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BundyButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BundyButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/BundyButton.vue?vue&type=template&id=161c6cf2&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/BundyButton.vue?vue&type=template&id=161c6cf2& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BundyButton_vue_vue_type_template_id_161c6cf2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./BundyButton.vue?vue&type=template&id=161c6cf2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BundyButton.vue?vue&type=template&id=161c6cf2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BundyButton_vue_vue_type_template_id_161c6cf2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BundyButton_vue_vue_type_template_id_161c6cf2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Clock.vue":
 /*!*******************************************!*\
   !*** ./resources/js/components/Clock.vue ***!
@@ -68548,15 +68778,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ClockedOut_vue_vue_type_template_id_85ea79e8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClockedOut.vue?vue&type=template&id=85ea79e8& */ "./resources/js/components/ClockedOut.vue?vue&type=template&id=85ea79e8&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _ClockedOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClockedOut.vue?vue&type=script&lang=js& */ "./resources/js/components/ClockedOut.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ClockedOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _ClockedOut_vue_vue_type_template_id_85ea79e8___WEBPACK_IMPORTED_MODULE_0__["render"],
   _ClockedOut_vue_vue_type_template_id_85ea79e8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -68570,6 +68802,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/ClockedOut.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ClockedOut.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/ClockedOut.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ClockedOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ClockedOut.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ClockedOut.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ClockedOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

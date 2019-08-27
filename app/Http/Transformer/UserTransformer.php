@@ -19,8 +19,8 @@ class UserTransformer extends TransformerAbstract
         return [
             'id'            => (int) $user->id,
             'name'          => $user->name,
-            'email'          => $user->email,
-            'employee_id'   => $user->employee->id,
+            'email'         => $user->email,
+            'employee_id'   => (int) $user->employee->id,
         ];
     }
 }
