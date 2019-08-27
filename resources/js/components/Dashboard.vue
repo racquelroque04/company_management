@@ -73,7 +73,6 @@
 
 <script>
   import Form from './EmployeeForm';
-  import Example from './ExampleComponent';
 
   export default {
     data : function() {

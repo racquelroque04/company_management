@@ -2,8 +2,6 @@
 
 @section('content')
   <div class="container">
-    @if($role->slug == 'admin')
-      <dashboard></dashboard>
-    @endif
+    <dashboard></dashboard>
   </div>
 @endsection

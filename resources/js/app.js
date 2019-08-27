@@ -8,6 +8,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import moment from 'moment';
+Vue.prototype.moment = moment
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -19,12 +23,18 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 Vue.component('employee-create', require('./components/EmployeeForm.vue').default);
 Vue.component('employee-view', require('./components/EmployeeView.vue').default);
 Vue.component('department-create', require('./components/DepartmentForm.vue').default);
 Vue.component('alert', require('./components/Alert.vue').default);
+Vue.component('clock', require('./components/Clock.vue').default);
+Vue.component('clocked-in', require('./components/ClockedIn.vue').default);
+Vue.component('clocked-out', require('./components/ClockedOut.vue').default);
+Vue.component('in-out', require('./components/InOutModal.vue').default);
+
+//Employee
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

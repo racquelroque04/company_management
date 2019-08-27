@@ -83,7 +83,9 @@ class RegisterController extends Controller
             'company_id'=> $company->id
         ]);
 
-        $user->roles()->attach($user);
+        $role = Role::find(Role::ADMIN);
+
+        $user->roles()->attach($role);
 
         return $user;
     }

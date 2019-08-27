@@ -49,6 +49,7 @@
         users : [],
         viewEmployee : false,
         employee : [],
+        success : false
       }
     },
 

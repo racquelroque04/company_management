@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Company;
+namespace App\Http\Controllers\Employees;
 use App\Employee;
 use App\Http\Controllers\Controller;
 
@@ -22,6 +22,11 @@ class EmployeeController extends Controller
     {
         $this->fractal = $fractal;
         $this->userTransformer = $userTransformer;
+    }
+
+    public function index()
+    {
+        return view('employees.index');
     }
 
     public function store(Request $request)

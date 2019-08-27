@@ -31,7 +31,8 @@
           {'name' : 'employee_password', 'label' : "Employee Password"},
         ],
         positions : [],
-        formFields : {}
+        formFields : {},
+        success : false
       }
     },
 
