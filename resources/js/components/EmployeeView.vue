@@ -55,7 +55,7 @@
 
     created () {
       axios
-        .get('https://next-proj.test/api/employees?company_id=1', this.formFields)
+        .get('/api/employees?company_id=1', this.formFields)
         .then(response =>
           (this.users = response.data)
         )
