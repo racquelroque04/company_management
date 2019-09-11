@@ -68,7 +68,7 @@
     methods : {
       viewEmployeeDetails ($userId) {
         axios
-          .get('https://next-proj.test/api/employee/' + $userId)
+          .get('/api/employee/' + $userId)
           .then(response => {
             this.employee = response.data.data;
             this.viewEmployee = true
